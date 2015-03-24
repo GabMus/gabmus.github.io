@@ -1,4 +1,17 @@
+body {
+    font-family: Roboto;
+}
 
-      div { width: 300px;}
-      lorem-element { font: 16px sans;}
+core-toolbar {
+    background-color: #03b7d3;
+    color: white;
+    height: 120px;
+}
 
+.mainFab {
+    z-index:100;
+    background-color: #ff5c9d;
+    position: absolute;
+    top: 70px;
+    right: 16px;
+}
