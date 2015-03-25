@@ -31,3 +31,7 @@ myfab-menu.active {
     opacity: 1;
     transition: opacity .3s linear;
 }
+
+.scrolled {
+    visibility: hidden;
+}

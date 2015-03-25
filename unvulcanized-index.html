@@ -1,9 +1,24 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 		<link href="style.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			$( "#mainfabbutton" ).click(function() {
+		  		$( "myfab-menu" ).toggleClass( "active" );
+			});
+		});
+
+		$(document).scroll(function(){
+			$("sub-title").toggleClass("scrolled", $("core-header-panel").scrollTop() > 1);
+		});
+		</script>
+
 		<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
 		<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
@@ -13,18 +28,25 @@
 		<link rel="import" href="bower_components/paper-fab/paper-fab.html">
 		<link rel="import" href="bower_components/core-tooltip/core-tooltip.html">
 		<link rel="import" href="elements/myfab-menu.html">
+		<link rel="import" href="elements/sub-title.html">
 	</head>
 
 	<body fullbleed layout vertical>
-		<core-header-panel flex>
-			<core-toolbar class="medium-tall" core-narrow>
+		<core-header-panel flex mode="waterfall-tall">
+			<core-toolbar class="" core-narrow>
 				<div class="myName">Gabriele Musco</div>
-				<span flex class="middle"></span>
-				<paper-fab icon="toc" class="mainFab middle"></paper-fab>
+				<sub-title class="middle"></sub-title>
+				<span flex class="bottom"></span>
+				<paper-fab id="mainfabbutton" icon="toc" class="mainFab bottom"></paper-fab>
+				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
-
-
-				<myfab-menu></myfab-menu>
+			<br /><br /><br /><br /><br /><br />
+			<br /><br /><br /><br /><br /><br />
+			<br /><br /><br /><br /><br /><br />
+			<br /><br /><br /><br /><br /><br />
+			<br /><br /><br /><br /><br /><br />
+			<br /><br /><br /><br /><br /><br />
+			<br /><br /><br /><br /><br /><br />
 			<!--content goes here-->
 
 		</core-header-panel>
