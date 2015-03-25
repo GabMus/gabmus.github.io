@@ -10,12 +10,7 @@
 			$( "#mainfabbutton" ).click(function() {
 		  		$( "myfab-menu" ).toggleClass( "active" );
 			});
-		});
-		$("core-header-panel::shadow #mainContainer").scroll(function(){
-			alert("test");
-			if($("core-toolbar").hasClass("animate")) {
-				$("sub-title").css({"visibility": "hidden"});
-		}
+
 		});
 		</script>
 
@@ -307,7 +302,6 @@ html /deep/ [segment], html /deep/ segment {
 		
 
 
-		<!--<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">-->
 		
 
 
@@ -666,6 +660,26 @@ html /deep/ .paper-shadow-bottom-z-5 {
 <!-- TODO: detect mobile and apply the .large class, instead of manual
            control. -->
 <!-- TODO: possibly reuse core-overlay. -->
+
+		<!--<link rel="import" href="bower_components/core-overlay/core-overlay.html">-->
+		
+
+
+
+<style shim-shadowdom="">
+  html /deep/ core-a11y-keys {
+    display: none;
+  }
+</style>
+
+
+
+
+
+
+		<!--<link rel="import" href="bower_components/core-transition/core-transition.html">-->
+		
+
 
 		
 
@@ -2908,9 +2922,397 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </script>
 </polymer-element>
 
+<polymer-element name="core-a11y-keys" assetpath="bower_components/core-a11y-keys/">
+<script>
+  (function() {
+    /*
+     * Chrome uses an older version of DOM Level 3 Keyboard Events
+     *
+     * Most keys are labeled as text, but some are Unicode codepoints.
+     * Values taken from: http://www.w3.org/TR/2007/WD-DOM-Level-3-Events-20071221/keyset.html#KeySet-Set
+     */
+    var KEY_IDENTIFIER = {
+      'U+0009': 'tab',
+      'U+001B': 'esc',
+      'U+0020': 'space',
+      'U+002A': '*',
+      'U+0030': '0',
+      'U+0031': '1',
+      'U+0032': '2',
+      'U+0033': '3',
+      'U+0034': '4',
+      'U+0035': '5',
+      'U+0036': '6',
+      'U+0037': '7',
+      'U+0038': '8',
+      'U+0039': '9',
+      'U+0041': 'a',
+      'U+0042': 'b',
+      'U+0043': 'c',
+      'U+0044': 'd',
+      'U+0045': 'e',
+      'U+0046': 'f',
+      'U+0047': 'g',
+      'U+0048': 'h',
+      'U+0049': 'i',
+      'U+004A': 'j',
+      'U+004B': 'k',
+      'U+004C': 'l',
+      'U+004D': 'm',
+      'U+004E': 'n',
+      'U+004F': 'o',
+      'U+0050': 'p',
+      'U+0051': 'q',
+      'U+0052': 'r',
+      'U+0053': 's',
+      'U+0054': 't',
+      'U+0055': 'u',
+      'U+0056': 'v',
+      'U+0057': 'w',
+      'U+0058': 'x',
+      'U+0059': 'y',
+      'U+005A': 'z',
+      'U+007F': 'del'
+    };
+
+    /*
+     * Special table for KeyboardEvent.keyCode.
+     * KeyboardEvent.keyIdentifier is better, and KeyBoardEvent.key is even better than that
+     *
+     * Values from: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.keyCode#Value_of_keyCode
+     */
+    var KEY_CODE = {
+      9: 'tab',
+      13: 'enter',
+      27: 'esc',
+      33: 'pageup',
+      34: 'pagedown',
+      35: 'end',
+      36: 'home',
+      32: 'space',
+      37: 'left',
+      38: 'up',
+      39: 'right',
+      40: 'down',
+      46: 'del',
+      106: '*'
+    };
+
+    /*
+     * KeyboardEvent.key is mostly represented by printable character made by the keyboard, with unprintable keys labeled
+     * nicely.
+     *
+     * However, on OS X, Alt+char can make a Unicode character that follows an Apple-specific mapping. In this case, we
+     * fall back to .keyCode.
+     */
+    var KEY_CHAR = /[a-z0-9*]/;
+
+    function transformKey(key) {
+      var validKey = '';
+      if (key) {
+        var lKey = key.toLowerCase();
+        if (lKey.length == 1) {
+          if (KEY_CHAR.test(lKey)) {
+            validKey = lKey;
+          }
+        } else if (lKey == 'multiply') {
+          // numpad '*' can map to Multiply on IE/Windows
+          validKey = '*';
+        } else {
+          validKey = lKey;
+        }
+      }
+      return validKey;
+    }
+
+    var IDENT_CHAR = /U\+/;
+    function transformKeyIdentifier(keyIdent) {
+      var validKey = '';
+      if (keyIdent) {
+        if (IDENT_CHAR.test(keyIdent)) {
+          validKey = KEY_IDENTIFIER[keyIdent];
+        } else {
+          validKey = keyIdent.toLowerCase();
+        }
+      }
+      return validKey;
+    }
+
+    function transformKeyCode(keyCode) {
+      var validKey = '';
+      if (Number(keyCode)) {
+        if (keyCode >= 65 && keyCode <= 90) {
+          // ascii a-z
+          // lowercase is 32 offset from uppercase
+          validKey = String.fromCharCode(32 + keyCode);
+        } else if (keyCode >= 112 && keyCode <= 123) {
+          // function keys f1-f12
+          validKey = 'f' + (keyCode - 112);
+        } else if (keyCode >= 48 && keyCode <= 57) {
+          // top 0-9 keys
+          validKey = String(48 - keyCode);
+        } else if (keyCode >= 96 && keyCode <= 105) {
+          // num pad 0-9
+          validKey = String(96 - keyCode);
+        } else {
+          validKey = KEY_CODE[keyCode];
+        }
+      }
+      return validKey;
+    }
+
+    function keyboardEventToKey(ev) {
+      // fall back from .key, to .keyIdentifier, to .keyCode, and then to .detail.key to support artificial keyboard events
+      var normalizedKey = transformKey(ev.key) || transformKeyIdentifier(ev.keyIdentifier) || transformKeyCode(ev.keyCode) || transformKey(ev.detail.key) || '';
+      return {
+        shift: ev.shiftKey,
+        ctrl: ev.ctrlKey,
+        meta: ev.metaKey,
+        alt: ev.altKey,
+        key: normalizedKey
+      };
+    }
+
+    /*
+     * Input: ctrl+shift+f7 => {ctrl: true, shift: true, key: 'f7'}
+     * ctrl/space => {ctrl: true} || {key: space}
+     */
+    function stringToKey(keyCombo) {
+      var keys = keyCombo.split('+');
+      var keyObj = Object.create(null);
+      keys.forEach(function(key) {
+        if (key == 'shift') {
+          keyObj.shift = true;
+        } else if (key == 'ctrl') {
+          keyObj.ctrl = true;
+        } else if (key == 'alt') {
+          keyObj.alt = true;
+        } else {
+          keyObj.key = key;
+        }
+      });
+      return keyObj;
+    }
+
+    function keyMatches(a, b) {
+      return Boolean(a.alt) == Boolean(b.alt) && Boolean(a.ctrl) == Boolean(b.ctrl) && Boolean(a.shift) == Boolean(b.shift) && a.key === b.key;
+    }
+
+    /**
+     * Fired when a keycombo in `keys` is pressed.
+     *
+     * @event keys-pressed
+     */
+    function processKeys(ev) {
+      var current = keyboardEventToKey(ev);
+      for (var i = 0, dk; i < this._desiredKeys.length; i++) {
+        dk = this._desiredKeys[i];
+        if (keyMatches(dk, current)) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          this.fire('keys-pressed', current, this, false);
+          break;
+        }
+      }
+    }
+
+    function listen(node, handler) {
+      if (node && node.addEventListener) {
+        node.addEventListener('keydown', handler);
+      }
+    }
+
+    function unlisten(node, handler) {
+      if (node && node.removeEventListener) {
+        node.removeEventListener('keydown', handler);
+      }
+    }
+
+    Polymer('core-a11y-keys', {
+      created: function() {
+        this._keyHandler = processKeys.bind(this);
+      },
+      attached: function() {
+        if (!this.target) {
+          this.target = this.parentNode;
+        }
+        listen(this.target, this._keyHandler);
+      },
+      detached: function() {
+        unlisten(this.target, this._keyHandler);
+      },
+      publish: {
+        /**
+         * The set of key combinations that will be matched (in keys syntax).
+         *
+         * @attribute keys
+         * @type string
+         * @default ''
+         */
+        keys: '',
+        /**
+         * The node that will fire keyboard events.
+         * Default to this element's parentNode unless one is assigned
+         *
+         * @attribute target
+         * @type Node
+         * @default this.parentNode
+         */
+        target: null
+      },
+      keysChanged: function() {
+        // * can have multiple mappings: shift+8, * on numpad or Multiply on numpad
+        var normalized = this.keys.replace('*', '* shift+*');
+        this._desiredKeys = normalized.toLowerCase().split(' ').map(stringToKey);
+      },
+      targetChanged: function(oldTarget) {
+        unlisten(oldTarget, this._keyHandler);
+        listen(this.target, this._keyHandler);
+      }
+    });
+  })();
+</script>
+</polymer-element>
+<polymer-element name="paper-button" extends="paper-button-base" attributes="raised recenteringTouch fill" role="button" assetpath="bower_components/paper-button/">
+
+  <template>
+
+    <style>
+
+      :host {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        min-width: 5.14em;
+        margin: 0 0.29em;
+        background: transparent;
+        text-align: center;
+        font: inherit;
+        text-transform: uppercase;
+        outline: none;
+        border-radius: 3px;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+      }
+
+      :host([disabled]) {
+        background: #eaeaea;
+        color: #a8a8a8;
+        cursor: auto;
+        pointer-events: none;
+      }
+
+      ::content * {
+        text-transform: inherit;
+      }
+
+      #bg, #shadow {
+        border-radius: inherit;
+      }
+
+      #ripple {
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .button-content {
+        padding: 0.7em 0.57em
+      }
+
+      polyfill-next-selector { content: '.button-content > a'; }
+      ::content > a {
+        height: 100%;
+        padding: 0.7em 0.57em;
+        margin: -0.7em -0.57em;
+        /* flex */
+        -ms-flex: 1 1 0.000000001px;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-flex-basis: 0.000000001px;
+        flex-basis: 0.000000001px;
+      }
+
+    </style>
+
+    <template if="{{raised}}">
+      <paper-shadow id="shadow" fit="" animated=""></paper-shadow>
+    </template>
+
+    <!-- this div is needed to position the ripple behind text content -->
+    <div class="button-content" relative="" layout="" horizontal="" center-center="">
+      <content></content>
+    </div>
+
+    <core-a11y-keys keys="space enter" target="{{}}" on-keys-pressed="{{_activate}}"></core-a11y-keys>
+
+  </template>
+
+  <script>
+    Polymer('paper-button',{
+
+      publish: {
+
+        /**
+         * If true, the button will be styled with a shadow.
+         *
+         * @attribute raised
+         * @type boolean
+         * @default false
+         */
+        raised: false,
+
+        /**
+         * By default the ripple emanates from where the user touched the button.
+         * Set this to true to always center the ripple.
+         *
+         * @attribute recenteringTouch
+         * @type boolean
+         * @default false
+         */
+        recenteringTouch: false,
+
+        /**
+         * By default the ripple expands to fill the button. Set this to true to
+         * constrain the ripple to a circle within the button.
+         *
+         * @attribute fill
+         * @type boolean
+         * @default true
+         */
+        fill: true
+
+      },
+
+      _activate: function() {
+        this.click();
+        this.fire('tap');
+        if (!this.pressed) {
+          var bcr = this.getBoundingClientRect();
+          var x = bcr.left + (bcr.width / 2);
+          var y = bcr.top + (bcr.height / 2);
+          this.downAction({x: x, y: y});
+          var fn = function fn() {
+            this.upAction();
+            this.removeEventListener('keyup', fn);
+          }.bind(this);
+          this.addEventListener('keyup', fn);
+        }
+      }
+
+    });
+  </script>
+</polymer-element>
+
 <polymer-element name="myfab-menu" assetpath="elements/">
     <template>
     <style>
+    paper-fab.me {
+        background-color: #52A9A1;
+    }
     paper-fab.projects {
         background-color: #4ECF6E;
     }
@@ -2933,11 +3335,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style>
         <div class="fabmenuContainer" vertical="" layout="">
+            <a href="#meLink" horizontal="" layout="">
+                <core-tooltip label="Something about me" position="left" noarrow="" show=""><paper-fab mini="" icon="account-circle" class="me"></paper-fab></core-tooltip>
+            </a>
             <a href="#projLink" horizontal="" layout="">
                 <core-tooltip label="Projects" position="left" noarrow="" show=""><paper-fab mini="" icon="settings" class="projects"></paper-fab></core-tooltip>
             </a>
             <a href="#socialLink" horizontal="" layout="">
-                <core-tooltip label="Social" position="left" noarrow="" show=""><paper-fab mini="" icon="account-circle" class="social"></paper-fab></core-tooltip>
+                <core-tooltip label="Social" position="left" noarrow="" show=""><paper-fab mini="" icon="question-answer" class="social"></paper-fab></core-tooltip>
             </a>
             <a href="#contactmeLink" horizontal="" layout="">
                 <core-tooltip label="Contact me" position="left" noarrow="" show=""><paper-fab mini="" icon="create" class="contact"></paper-fab></core-tooltip>
@@ -2994,21 +3399,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             text-decoration: none;
             color: rgb(51, 51, 51);
         }
+        #socialFab {
+            background-color: #FF5C9D;
+            color: white;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+        }
     </style>
-                <a href="{{clink}}" target="_blank">
+
+
+<!--
+    <a href="{{mlink}}" target="_blank"><paper-button raised hover>
+
+    </paper-button></a>
+-->
+
+
+
                 <paper-shadow z="1" class="card" horizontal="" layout="">
                     <img class="socialIcon" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
-
                     <div vertical="" layout="">
                         <span flex=""></span><!-- spacer -->
                         <span class="main">{{wname}}</span>
                         <span class="sub">{{uname}}</span>
                         <span flex=""></span><!-- spacer -->
                     </div>
-            </paper-shadow>
-        </a>
+                    <a href="{{clink}}" target="_blank">
+                        <paper-fab mini="" id="socialFab" icon="arrow-forward"></paper-fab>
+                    </a>
+                    <paper-shadow>
+
     
-    </template>
+    </paper-shadow></paper-shadow></template>
 <script>Polymer('social-card');</script></polymer-element>
 
 <polymer-element name="section-title" attributes="text" assetpath="elements/">
@@ -3029,7 +3452,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
 <script>Polymer('section-title');</script></polymer-element>
 
-<polymer-element name="project-card" attributes="pname pdesc ipath" assetpath="elements/">
+<polymer-element name="project-card" attributes="pname pdesc ipath mlink" assetpath="elements/">
     <template>
     <style>
         .card {
@@ -3052,37 +3475,99 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         .main {
             color: white;
             margin-top:-35px;
-            margin-bottom:35px;
+            margin-bottom:20px;
             font-family: Roboto, sans-serif;
             font-size: 30px;
             text-shadow: 0px 1px 5px rgba(0,0,0,.7);
             text-align: center;text-align: center;
         }
         .sub {
-            text-align: center;
+            padding: 0 25px 0 25px;
+            text-align: left;
             font-family: Roboto, sans-serif;
             font-size: 16px;
-            margin-bottom:35px;
+            margin-bottom:20px;
         }
-        a {
-            font-style: none;
-            text-decoration: none;
-            color: rgb(51, 51, 51);
+        paper-button {
+            background-color: #FF5C9D;
+            color: white;
+            margin-right: 25px;
+            margin-bottom:25px;
         }
     </style>
-
-                <paper-shadow z="1" class="card" vertical="" layout="">
+            <paper-shadow z="1" class="card" vertical="" layout="">
                     <img class="projIcon" src="elements/proj-icons/{{ipath}}.png"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
 
-                <div vertical="" layout="" center="">
+                <div vertical="" layout="">
                     <span class="main">{{pname}}</span>
                     <span class="sub" justify="">{{pdesc}}</span>
                 </div>
+                <div horizontal="" layout="">
+                    <span flex=""></span>
+                    <a href="{{mlink}}" target="_blank"><paper-button raised="" hover="">MORE</paper-button></a>
+                </div>
             </paper-shadow>
+    </template>
+    <script>
+    Polymer('project-card',{
+            method1: function () {
+              this.$.overlay.toggle();
+            }
+         });
+    </script>
+<script>Polymer('project-card');</script></polymer-element>
+
+<polymer-element name="about-me" assetpath="elements/">
+    <template>
+    <style>
+        .card {
+            background-color: white;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 3px;
+            font-style: none;
+            text-decoration: none;
+            color: rgb(51, 51, 51);
+            margin: 25px;
+        }
+        .main {
+            font-family: Roboto, sans-serif;
+            font-size: 25px;
+        }
+        .sub {
+            font-family: Roboto, sans-serif;
+            font-size: 16px;
+        }
+        .myFace {
+
+        }
+    </style>
+
+
+<!--
+    <a href="{{mlink}}" target="_blank"><paper-button raised hover>
+
+    </paper-button></a>
+-->
+
+
+
+                <paper-shadow z="1" class="card" horizontal="" layout="">
+                    <img class="myFace" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
+                    <div vertical="" layout="">
+                        <span flex=""></span><!-- spacer -->
+                        <p class="main"></p>
+                        <p class="sub">Hello there! My name is Gabriele and I am a Computer Science student in Catania's university.
+I've always been fascinated by the amazing world of technology and computers and at some point in my life I decided I could make a living out of my passion.
+I'm a YouTuber, designer, developer, programmer and many other things at the same time, but I don't like to be limited to one field only. That's why I like to refer to myself a <i>creative</i>.
+Creativity is, along with willpower, my best weapon to face every task and problem.</p>
+                        <span flex=""></span><!-- spacer -->
+                    </div>
+                    <paper-shadow>
 
     
-    </template>
-<script>Polymer('project-card');</script></polymer-element>
+    </paper-shadow></paper-shadow></template>
+<script>Polymer('about-me');</script></polymer-element>
 </div>
 		<core-header-panel flex="" id="mainHeaderPanel">
 			<core-toolbar>
@@ -3093,13 +3578,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
 
+			<section-title id="meLink" text="SOMETHING ABOUT ME"></section-title>
+			<about-me></about-me>
+
+
 
 			<section-title id="projLink" text="PROJECTS"></section-title>
 			<div class="card-container" horizontal="" layout="" center-justified="">
-				<project-card pname="Tech Pills" pdesc="Technology YouTube channel" ipath="techpills"></project-card>
-				<project-card pname="Sunrise" pdesc="Simple FOSS Material Design Android weather app" ipath="sunrise"></project-card>
+				<project-card pname="Tech Pills" pdesc="Technology YouTube channel" ipath="techpills" mlink="https://www.youtube.com/gabrielemusco">
+				</project-card>
+				<project-card pname="Sunrise" pdesc="Simple FOSS Material Design Android weather app" ipath="sunrise" mlink="https://github.com/GabMus/android-sunrise">
+				</project-card>
 			</div>
-
 
 			<section-title id="socialLink" text="SOCIAL"></section-title>
 			<div class="card-container" horizontal="" layout="" center-justified="">
