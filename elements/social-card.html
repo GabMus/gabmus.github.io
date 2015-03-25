@@ -31,19 +31,37 @@
             text-decoration: none;
             color: rgb(51, 51, 51);
         }
+        #socialFab {
+            background-color: #FF5C9D;
+            color: white;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+        }
     </style>
-                <a href="{{clink}}" target="_blank">
+
+
+<!--
+    <a href="{{mlink}}" target="_blank"><paper-button raised hover>
+
+    </paper-button></a>
+-->
+
+
+
                 <paper-shadow z="1" class="card" horizontal layout>
                     <img class="socialIcon" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
-
                     <div vertical layout>
                         <span flex></span><!-- spacer -->
                         <span class="main">{{wname}}</span>
                         <span class="sub">{{uname}}</span>
                         <span flex></span><!-- spacer -->
                     </div>
-            </paper-shadow>
-        </a>
+                    <a href="{{clink}}" target="_blank">
+                        <paper-fab mini id="socialFab" icon="arrow-forward"></paper-fab>
+                    </a>
+                    <paper-shadow>
+
     </div>
     </template>
 </polymer-element>

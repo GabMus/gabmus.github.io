@@ -12,12 +12,7 @@
 			$( "#mainfabbutton" ).click(function() {
 		  		$( "myfab-menu" ).toggleClass( "active" );
 			});
-		});
-		$("core-header-panel::shadow #mainContainer").scroll(function(){
-			alert("test");
-			if($("core-toolbar").hasClass("animate")) {
-				$("sub-title").css({"visibility": "hidden"});
-		}
+
 		});
 		</script>
 
@@ -25,15 +20,18 @@
 
 		<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-		<!--<link rel="import" href="bower_components/core-scaffold/core-scaffold.html">-->
 		<link rel="import" href="bower_components/core-icons/core-icons.html">
 		<link rel="import" href="bower_components/paper-fab/paper-fab.html">
 		<link rel="import" href="bower_components/core-tooltip/core-tooltip.html">
+		<!--<link rel="import" href="bower_components/core-overlay/core-overlay.html">-->
+		<link rel="import" href="bower_components/paper-button/paper-button.html">
+		<!--<link rel="import" href="bower_components/core-transition/core-transition.html">-->
 		<link rel="import" href="elements/myfab-menu.html">
 		<link rel="import" href="elements/sub-title.html">
 		<link rel="import" href="elements/social-card.html">
 		<link rel="import" href="elements/section-title.html">
 		<link rel="import" href="elements/project-card.html">
+		<link rel="import" href="elements/about-me.html">
 	</head>
 
 	<body fullbleed layout vertical>
@@ -46,13 +44,26 @@
 				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
 
+			<section-title id ="meLink" text="SOMETHING ABOUT ME"></section-title>
+			<about-me></about-me>
+
+
 
 			<section-title id ="projLink" text="PROJECTS"></section-title>
 			<div class="card-container" horizontal layout center-justified>
-				<project-card pname="Tech Pills" pdesc="Technology YouTube channel" ipath="techpills"></project-card>
-				<project-card pname="Sunrise" pdesc="Simple FOSS Material Design Android weather app" ipath="sunrise"></project-card>
+				<project-card
+					pname="Tech Pills"
+					pdesc="Technology YouTube channel"
+					ipath="techpills"
+					mlink="https://www.youtube.com/gabrielemusco">
+				</project-card>
+				<project-card
+					pname="Sunrise"
+					pdesc="Simple FOSS Material Design Android weather app"
+					ipath="sunrise"
+					mlink="https://github.com/GabMus/android-sunrise">
+				</project-card>
 			</div>
-
 
 			<section-title id ="socialLink" text="SOCIAL"></section-title>
 			<div class="card-container" horizontal layout center-justified>
