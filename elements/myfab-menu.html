@@ -12,6 +12,9 @@
     paper-fab.contact {
         background-color: #FF5653;
     }
+    paper-fab.achievements {
+        background-color: #8975E1;
+    }
     core-tooltip {
         margin-bottom: 15px;
     }
@@ -22,15 +25,18 @@
     }
     </style>
         <div class="fabmenuContainer" vertical layout>
-            <div horizontal layout>
+            <a href="#projLink" horizontal layout>
                 <core-tooltip label="Projects" position="left" noarrow show><paper-fab mini icon="settings" class="projects"></paper-fab></core-tooltip>
-            </div>
-            <div horizontal layout>
+            </a>
+            <a href="#socialLink" horizontal layout>
                 <core-tooltip label="Social" position="left" noarrow show><paper-fab mini icon="account-circle" class="social"></paper-fab></core-tooltip>
-            </div>
-            <div horizontal layout>
+            </a>
+            <a href="#contactmeLink" horizontal layout>
                 <core-tooltip label="Contact me" position="left" noarrow show><paper-fab mini icon="create" class="contact"></paper-fab></core-tooltip>
-            </div>
+            </a>
+            <a href="#achievementsLink" horizontal layout>
+                <core-tooltip label="Achievements" position="left" noarrow show><paper-fab mini icon="star" class="achievements"></paper-fab></core-tooltip>
+            </a>
         </div>
     </template>
 </polymer-element>

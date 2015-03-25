@@ -32,6 +32,8 @@
 		<link rel="import" href="elements/myfab-menu.html">
 		<link rel="import" href="elements/sub-title.html">
 		<link rel="import" href="elements/social-card.html">
+		<link rel="import" href="elements/section-title.html">
+		<link rel="import" href="elements/project-card.html">
 	</head>
 
 	<body fullbleed layout vertical>
@@ -44,12 +46,20 @@
 				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
 
-			<div id="social" horizontal layout center-justified>
-				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
-				<social-card wname="Twitter" uname="@gabmus207" clink=""></social-card>
-				<social-card wname="Google+" uname="/+GabrieleMusco" clink=""></social-card>
-				<social-card wname="YouTube" uname="Tech Pills" clink=""></social-card>
-				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
+
+			<section-title id ="projLink" text="PROJECTS"></section-title>
+			<div class="card-container" horizontal layout center-justified>
+				<project-card pname="Tech Pills" pdesc="Technology YouTube channel" ipath="techpills"></project-card>
+				<project-card pname="Sunrise" pdesc="Simple FOSS Material Design Android weather app" ipath="sunrise"></project-card>
+			</div>
+
+
+			<section-title id ="socialLink" text="SOCIAL"></section-title>
+			<div class="card-container" horizontal layout center-justified>
+				<social-card wname="GitHub" uname="GabMus" clink="https://github.com/GabMus/"></social-card>
+				<social-card wname="Twitter" uname="@gabmus207" clink="https://twitter.com/gabmus207"></social-card>
+				<social-card wname="Google+" uname="+GabrieleMusco" clink="https://plus.google.com/+GabrieleMusco"></social-card>
+				<social-card wname="YouTube" uname="Tech Pills" clink="https://www.youtube.com/gabrielemusco"></social-card>
 			</div>
 			<!--content goes here-->
 

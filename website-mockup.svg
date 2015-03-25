@@ -49,13 +49,13 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="300.11054"
-     inkscape:cy="552.32136"
+     inkscape:zoom="0.7"
+     inkscape:cx="393.46563"
+     inkscape:cy="506.64564"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:snap-bbox="true"
+     inkscape:snap-bbox="false"
      inkscape:snap-bbox-edge-midpoints="true"
      inkscape:bbox-nodes="true"
      inkscape:bbox-paths="true"
@@ -356,72 +356,163 @@
       </g>
     </g>
     <g
-       id="g4207"
-       transform="matrix(0.4363687,0,0,0.4363687,20.401101,376.21698)">
-      <rect
-         rx="6.4516125"
-         y="168.24353"
-         x="62.072727"
-         height="267.97983"
-         width="589.86176"
-         id="rect4314"
-         style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.57157886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228" />
-      <circle
-         r="74.751282"
-         cy="301.81885"
-         cx="189.90868"
-         id="path4190"
-         style="fill:#666666;fill-opacity:1;stroke:none;stroke-opacity:1" />
+       id="g4413"
+       transform="translate(753.57381,147.48226)">
       <g
-         id="g4201">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="311.89435"
-           y="301.0376"
-           id="text4192"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan4194"
+         transform="matrix(0.4363687,0,0,0.4363687,20.401101,376.21698)"
+         id="g4207">
+        <rect
+           style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.57157886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228"
+           id="rect4314"
+           width="589.86176"
+           height="267.97983"
+           x="62.072727"
+           y="168.24353"
+           rx="6.4516125" />
+        <circle
+           style="fill:#666666;fill-opacity:1;stroke:none;stroke-opacity:1"
+           id="path4190"
+           cx="189.90868"
+           cy="301.81885"
+           r="74.751282" />
+        <g
+           id="g4201">
+          <text
+             sodipodi:linespacing="125%"
+             id="text4192"
+             y="301.0376"
+             x="311.89435"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto"
+               y="301.0376"
+               x="311.89435"
+               id="tspan4194"
+               sodipodi:role="line">Github</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text4197"
+             y="343.81885"
+             x="314.76544"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '"
+               y="343.81885"
+               x="314.76544"
+               id="tspan4199"
+               sodipodi:role="line">GabMus</tspan></text>
+        </g>
+      </g>
+      <g
+         id="g4216"
+         transform="matrix(0.4363687,0,0,0.4363687,306.48409,376.21698)">
+        <rect
+           rx="6.4516125"
+           y="168.24353"
+           x="62.072727"
+           height="267.97983"
+           width="589.86176"
+           id="rect4218"
+           style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.57157886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228" />
+        <circle
+           r="74.751282"
+           cy="301.81885"
+           cx="189.90868"
+           id="circle4220"
+           style="fill:#00ffff;fill-opacity:1;stroke:none;stroke-opacity:1" />
+        <g
+           id="g4222">
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
              x="311.89435"
              y="301.0376"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto">Github</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="314.76544"
-           y="343.81885"
-           id="text4197"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan4199"
+             id="text4224"
+             sodipodi:linespacing="125%"><tspan
+               sodipodi:role="line"
+               id="tspan4226"
+               x="311.89435"
+               y="301.0376"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto">Twitter</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
              x="314.76544"
              y="343.81885"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '">GabMus</tspan></text>
+             id="text4228"
+             sodipodi:linespacing="125%"><tspan
+               sodipodi:role="line"
+               id="tspan4230"
+               x="314.76544"
+               y="343.81885"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '">@GabMus207</tspan></text>
+        </g>
       </g>
-    </g>
-    <g
-       transform="matrix(0.4363687,0,0,0.4363687,306.48409,376.21698)"
-       id="g4216">
-      <rect
-         style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.57157886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228"
-         id="rect4218"
-         width="589.86176"
-         height="267.97983"
-         x="62.072727"
-         y="168.24353"
-         rx="6.4516125" />
-      <circle
-         style="fill:#00ffff;fill-opacity:1;stroke:none;stroke-opacity:1"
-         id="circle4220"
-         cx="189.90868"
-         cy="301.81885"
-         r="74.751282" />
       <g
-         id="g4222">
+         transform="matrix(0.4363687,0,0,0.4363687,23.641384,522.6891)"
+         id="g4232">
+        <rect
+           style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.57157886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228"
+           id="rect4234"
+           width="589.86176"
+           height="267.97983"
+           x="62.072727"
+           y="168.24353"
+           rx="6.4516125" />
+        <circle
+           style="fill:#718797;fill-opacity:1;stroke:none;stroke-opacity:1"
+           id="circle4236"
+           cx="189.90868"
+           cy="301.81885"
+           r="74.751282" />
+        <g
+           id="g4238">
+          <text
+             sodipodi:linespacing="125%"
+             id="text4240"
+             y="301.0376"
+             x="311.89435"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto"
+               y="301.0376"
+               x="311.89435"
+               id="tspan4242"
+               sodipodi:role="line">LinkedIn</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text4244"
+             y="343.81885"
+             x="314.76544"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '"
+               y="343.81885"
+               x="314.76544"
+               id="tspan4246"
+               sodipodi:role="line">/GabrieleMusco</tspan></text>
+        </g>
+      </g>
+      <rect
+         style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:0.6857878;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228"
+         id="rect4250"
+         width="257.39722"
+         height="116.93801"
+         x="330.54022"
+         y="596.10529"
+         rx="2.8152816" />
+      <circle
+         style="fill:#d40000;fill-opacity:1;stroke:none;stroke-opacity:1"
+         id="circle4252"
+         cx="386.32382"
+         cy="654.39337"
+         r="32.619118" />
+      <g
+         transform="matrix(0.4363687,0,0,0.4363687,303.45363,522.6891)"
+         id="g4254">
         <text
            sodipodi:linespacing="125%"
-           id="text4224"
+           id="text4256"
            y="301.0376"
            x="311.89435"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -429,11 +520,11 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto"
              y="301.0376"
              x="311.89435"
-             id="tspan4226"
-             sodipodi:role="line">Twitter</tspan></text>
+             id="tspan4259"
+             sodipodi:role="line">Google+</tspan></text>
         <text
            sodipodi:linespacing="125%"
-           id="text4228"
+           id="text4261"
            y="343.81885"
            x="314.76544"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -441,96 +532,9 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '"
              y="343.81885"
              x="314.76544"
-             id="tspan4230"
-             sodipodi:role="line">@GabMus207</tspan></text>
+             id="tspan4263"
+             sodipodi:role="line">/+GabrieleMusco</tspan></text>
       </g>
-    </g>
-    <g
-       id="g4232"
-       transform="matrix(0.4363687,0,0,0.4363687,23.641384,522.6891)">
-      <rect
-         rx="6.4516125"
-         y="168.24353"
-         x="62.072727"
-         height="267.97983"
-         width="589.86176"
-         id="rect4234"
-         style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.57157886;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228" />
-      <circle
-         r="74.751282"
-         cy="301.81885"
-         cx="189.90868"
-         id="circle4236"
-         style="fill:#718797;fill-opacity:1;stroke:none;stroke-opacity:1" />
-      <g
-         id="g4238">
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="311.89435"
-           y="301.0376"
-           id="text4240"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan4242"
-             x="311.89435"
-             y="301.0376"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto">LinkedIn</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="314.76544"
-           y="343.81885"
-           id="text4244"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan4246"
-             x="314.76544"
-             y="343.81885"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '">/GabrieleMusco</tspan></text>
-      </g>
-    </g>
-    <rect
-       rx="2.8152816"
-       y="596.10529"
-       x="330.54022"
-       height="116.93801"
-       width="257.39722"
-       id="rect4250"
-       style="fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:0.6857878;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.10769228" />
-    <circle
-       r="32.619118"
-       cy="654.39337"
-       cx="386.32382"
-       id="circle4252"
-       style="fill:#d40000;fill-opacity:1;stroke:none;stroke-opacity:1" />
-    <g
-       id="g4254"
-       transform="matrix(0.4363687,0,0,0.4363687,303.45363,522.6891)">
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="311.89435"
-         y="301.0376"
-         id="text4256"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           id="tspan4259"
-           x="311.89435"
-           y="301.0376"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:80px;font-family:Roboto;-inkscape-font-specification:Roboto">Google+</tspan></text>
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         x="314.76544"
-         y="343.81885"
-         id="text4261"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           id="tspan4263"
-           x="314.76544"
-           y="343.81885"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, '">/+GabrieleMusco</tspan></text>
     </g>
     <image
        width="360"
@@ -886,5 +890,105 @@ hxLABEEoeOJgrcr/A9nC4jvsYjl/AAAAAElFTkSuQmCC
        id="path4411"
        d="m -168.63576,436.60761 c 2.74002,1.32694 5.12235,3.18197 7.57138,4.96087 1.91268,1.45269 4.09645,2.53824 5.99431,3.98785 1.68566,1.39658 3.8362,1.92791 5.69428,3.03274 1.06225,0.57154 0.55432,0.24369 1.52201,0.9863 0,0 -12.67463,8.05124 -12.67463,8.05124 l 0,0 c -0.87267,-0.57963 -0.40387,-0.29099 -1.41288,-0.85531 -1.94637,-1.01879 -4.05404,-1.75614 -5.7547,-3.19411 -1.98969,-1.33366 -4.03474,-2.58244 -5.95838,-4.01858 -2.41736,-1.7556 -4.7953,-3.5685 -7.55131,-4.78003 0,0 12.56992,-8.17097 12.56992,-8.17097 z"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="991.56104"
+       y="511.57214"
+       id="text4446"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4448"
+         x="991.56104"
+         y="511.57214"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">Social</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path4450"
+       d="m 858.25779,522.12374 -171.15778,-80.53763 74.88495,8.48169 -20.86725,42.23278 -50.97947,-49.72606 163.22432,75.88535 z"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.43379831px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.01219606;stroke-opacity:0.1484375"
+       id="rect4452"
+       width="340.40924"
+       height="251.30043"
+       x="15.158397"
+       y="282.63202"
+       rx="2.2534809" />
+    <rect
+       rx="2.252804"
+       y="280.66287"
+       x="377.85425"
+       height="304.70755"
+       width="340.30701"
+       id="rect4454"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.11440861;stroke-opacity:0.1484375" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.054322;stroke-opacity:0.1484375"
+       id="rect4456"
+       width="340.3671"
+       height="272.68686"
+       x="13.15913"
+       y="608.6684"
+       rx="2.253202" />
+    <rect
+       rx="2.253202"
+       y="607.65826"
+       x="376.81406"
+       height="272.68686"
+       width="340.3671"
+       id="rect4458"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.054322;stroke-opacity:0.1484375" />
+    <circle
+       style="fill:#7aadbc;fill-opacity:1;stroke:none;stroke-opacity:0.1484375"
+       id="path4460"
+       cx="185.36301"
+       cy="356.36707"
+       r="62.629456" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4462"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Airstream;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:Airstream;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion4464"><rect
+           id="rect4466"
+           width="321.73358"
+           height="122.73354"
+           x="26.769043"
+           y="425.56256" /></flowRegion><flowPara
+         id="flowPara4468"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="99.687775"
+       y="468.42508"
+       id="text4470"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4472"
+         x="99.687775"
+         y="468.42508"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto">Tech Pills</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="180"
+       y="508.07648"
+       id="text4474"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4476"
+         x="180"
+         y="508.07648" /></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4478"
+       y="511.2681"
+       x="61.196342"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.98117447px;line-height:125%;font-family:Airstream;-inkscape-font-specification:Airstream;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto"
+         y="511.2681"
+         x="61.196342"
+         id="tspan4480"
+         sodipodi:role="line">Technology YouTube channel</tspan></text>
   </g>
 </svg>

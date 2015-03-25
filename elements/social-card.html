@@ -10,7 +10,7 @@
             border-radius: 3px;
             font-style: none;
             text-decoration: none;
-            color: black;
+            color: rgb(51, 51, 51);
             margin: 25px;
         }
         .socialIcon {
@@ -29,12 +29,11 @@
         a {
             font-style: none;
             text-decoration: none;
-            color: black;
+            color: rgb(51, 51, 51);
         }
     </style>
-        <a href="{{clink}}" target="_blank">
-            <paper-shadow z="1" class="card" horizontal layout>
-
+                <a href="{{clink}}" target="_blank">
+                <paper-shadow z="1" class="card" horizontal layout>
                     <img class="socialIcon" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
 
                     <div vertical layout>
@@ -45,5 +44,6 @@
                     </div>
             </paper-shadow>
         </a>
+    </div>
     </template>
 </polymer-element>

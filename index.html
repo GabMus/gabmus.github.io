@@ -676,6 +676,12 @@ html /deep/ .paper-shadow-bottom-z-5 {
 		
 
 
+		
+
+
+		
+
+
 	</head>
 
 	<body fullbleed="" layout="" vertical=""><div hidden=""><polymer-element name="core-header-panel" assetpath="bower_components/core-header-panel/">
@@ -2914,6 +2920,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     paper-fab.contact {
         background-color: #FF5653;
     }
+    paper-fab.achievements {
+        background-color: #8975E1;
+    }
     core-tooltip {
         margin-bottom: 15px;
     }
@@ -2924,15 +2933,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
     </style>
         <div class="fabmenuContainer" vertical="" layout="">
-            <div horizontal="" layout="">
+            <a href="#projLink" horizontal="" layout="">
                 <core-tooltip label="Projects" position="left" noarrow="" show=""><paper-fab mini="" icon="settings" class="projects"></paper-fab></core-tooltip>
-            </div>
-            <div horizontal="" layout="">
+            </a>
+            <a href="#socialLink" horizontal="" layout="">
                 <core-tooltip label="Social" position="left" noarrow="" show=""><paper-fab mini="" icon="account-circle" class="social"></paper-fab></core-tooltip>
-            </div>
-            <div horizontal="" layout="">
+            </a>
+            <a href="#contactmeLink" horizontal="" layout="">
                 <core-tooltip label="Contact me" position="left" noarrow="" show=""><paper-fab mini="" icon="create" class="contact"></paper-fab></core-tooltip>
-            </div>
+            </a>
+            <a href="#achievementsLink" horizontal="" layout="">
+                <core-tooltip label="Achievements" position="left" noarrow="" show=""><paper-fab mini="" icon="star" class="achievements"></paper-fab></core-tooltip>
+            </a>
         </div>
     </template>
 <script>Polymer('myfab-menu');</script></polymer-element>
@@ -2961,7 +2973,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             border-radius: 3px;
             font-style: none;
             text-decoration: none;
-            color: black;
+            color: rgb(51, 51, 51);
             margin: 25px;
         }
         .socialIcon {
@@ -2980,12 +2992,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         a {
             font-style: none;
             text-decoration: none;
-            color: black;
+            color: rgb(51, 51, 51);
         }
     </style>
-        <a href="{{clink}}" target="_blank">
-            <paper-shadow z="1" class="card" horizontal="" layout="">
-
+                <a href="{{clink}}" target="_blank">
+                <paper-shadow z="1" class="card" horizontal="" layout="">
                     <img class="socialIcon" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
 
                     <div vertical="" layout="">
@@ -2996,8 +3007,82 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
             </paper-shadow>
         </a>
+    
     </template>
 <script>Polymer('social-card');</script></polymer-element>
+
+<polymer-element name="section-title" attributes="text" assetpath="elements/">
+    <template>
+    <style>
+        .subtitle {
+            font-size: 30px;
+            color: rgb(51, 51, 51);
+            margin-top:25px;
+            margin-bottom:-10px;
+            font-family: Roboto, sans-serif;
+            text-align: center;
+            background-color: #EEEEEE;
+        }
+
+    </style>
+                <span class="subtitle" layout="" vertical="">{{text}}</span>
+    </template>
+<script>Polymer('section-title');</script></polymer-element>
+
+<polymer-element name="project-card" attributes="pname pdesc ipath" assetpath="elements/">
+    <template>
+    <style>
+        .card {
+            background-color: white;
+            width: 300px;
+            max-width: 300px;
+            border-radius: 3px;
+            font-style: none;
+            text-decoration: none;
+            color: rgb(51, 51, 51);
+            margin: 25px;
+        }
+        .projIcon {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            padding: 0;
+            height: 150px;
+            width: 300px;
+        }
+        .main {
+            color: white;
+            margin-top:-35px;
+            margin-bottom:35px;
+            font-family: Roboto, sans-serif;
+            font-size: 30px;
+            text-shadow: 0px 1px 5px rgba(0,0,0,.7);
+            text-align: center;text-align: center;
+        }
+        .sub {
+            text-align: center;
+            font-family: Roboto, sans-serif;
+            font-size: 16px;
+            margin-bottom:35px;
+        }
+        a {
+            font-style: none;
+            text-decoration: none;
+            color: rgb(51, 51, 51);
+        }
+    </style>
+
+                <paper-shadow z="1" class="card" vertical="" layout="">
+                    <img class="projIcon" src="elements/proj-icons/{{ipath}}.png"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
+
+                <div vertical="" layout="" center="">
+                    <span class="main">{{pname}}</span>
+                    <span class="sub" justify="">{{pdesc}}</span>
+                </div>
+            </paper-shadow>
+
+    
+    </template>
+<script>Polymer('project-card');</script></polymer-element>
 </div>
 		<core-header-panel flex="" id="mainHeaderPanel">
 			<core-toolbar>
@@ -3008,12 +3093,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
 
-			<div id="social" horizontal="" layout="" center-justified="">
-				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
-				<social-card wname="Twitter" uname="@gabmus207" clink=""></social-card>
-				<social-card wname="Google+" uname="/+GabrieleMusco" clink=""></social-card>
-				<social-card wname="YouTube" uname="Tech Pills" clink=""></social-card>
-				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
+
+			<section-title id="projLink" text="PROJECTS"></section-title>
+			<div class="card-container" horizontal="" layout="" center-justified="">
+				<project-card pname="Tech Pills" pdesc="Technology YouTube channel" ipath="techpills"></project-card>
+				<project-card pname="Sunrise" pdesc="Simple FOSS Material Design Android weather app" ipath="sunrise"></project-card>
+			</div>
+
+
+			<section-title id="socialLink" text="SOCIAL"></section-title>
+			<div class="card-container" horizontal="" layout="" center-justified="">
+				<social-card wname="GitHub" uname="GabMus" clink="https://github.com/GabMus/"></social-card>
+				<social-card wname="Twitter" uname="@gabmus207" clink="https://twitter.com/gabmus207"></social-card>
+				<social-card wname="Google+" uname="+GabrieleMusco" clink="https://plus.google.com/+GabrieleMusco"></social-card>
+				<social-card wname="YouTube" uname="Tech Pills" clink="https://www.youtube.com/gabrielemusco"></social-card>
 			</div>
 			<!--content goes here-->
 

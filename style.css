@@ -38,6 +38,6 @@ sub-title.scrolled {
     visibility: hidden;
 }
 
-div#social {
+.card-container {
     flex-wrap: wrap;
 }
