@@ -2,15 +2,35 @@
 
 <polymer-element name="myfab-menu" noscript>
     <template>
-        <div vertical layout>
+    <style>
+    paper-fab.projects {
+        background-color: #4ECF6E;
+    }
+    paper-fab.social {
+        background-color: #FFA44B;
+    }
+    paper-fab.contact {
+        background-color: #FF5653;
+    }
+    core-tooltip {
+        margin-bottom: 15px;
+    }
+    .fabmenuContainer {
+        position: absolute;
+        right: 65px;
+        top: 100px;
+    }
+    </style>
+        <div class="fabmenuContainer" vertical layout>
             <div horizontal layout>
-                <span>hello</span> <span>hello</span>
+                <core-tooltip label="Projects" position="left" noarrow show><paper-fab mini icon="settings" class="projects"></paper-fab></core-tooltip>
             </div>
             <div horizontal layout>
-                <core-tooltip label="Projects" position="left" noarrow show><paper-fab mini icon="settings"></paper-fab>
+                <core-tooltip label="Social" position="left" noarrow show><paper-fab mini icon="account-circle" class="social"></paper-fab></core-tooltip>
             </div>
-            <span>hello</span>
-            <span>hello</span>
+            <div horizontal layout>
+                <core-tooltip label="Contact me" position="left" noarrow show><paper-fab mini icon="create" class="contact"></paper-fab></core-tooltip>
+            </div>
         </div>
     </template>
 </polymer-element>
