@@ -1,6 +1,24 @@
-<html><head>
+<!DOCTYPE html><html><head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 		<link href="style.css" rel="stylesheet" type="text/css">
-		<script src="bower_components/platform/platform.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+		<script>
+		$(document).ready(function() {
+			$( "#mainfabbutton" ).click(function() {
+		  		$( "myfab-menu" ).toggleClass( "active" );
+			});
+		});
+		$("core-header-panel::shadow #mainContainer").scroll(function(){
+			alert("test");
+			if($("core-toolbar").hasClass("animate")) {
+				$("sub-title").css({"visibility": "hidden"});
+		}
+		});
+		</script>
+
 		<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
 		<style shim-shadowdom="">
@@ -402,6 +420,260 @@ html /deep/ .paper-shadow-bottom-z-5 {
 }</style>
 
 
+
+
+		
+
+
+
+<script>
+
+(function(scope) {
+
+/**
+  `Polymer.CoreResizable` and `Polymer.CoreResizer` are a set of mixins that can be used
+  in Polymer elements to coordinate the flow of resize events between "resizers" (elements
+  that control the size or hidden state of their children) and "resizables" (elements that
+  need to be notified when they are resized or un-hidden by their parents in order to take
+  action on their new measurements).
+
+  Elements that perform measurement should add the `Core.Resizable` mixin to their 
+  Polymer prototype definition and listen for the `core-resize` event on themselves.
+  This event will be fired when they become showing after having been hidden,
+  when they are resized explicitly by a `CoreResizer`, or when the window has been resized.
+  Note, the `core-resize` event is non-bubbling.
+
+  `CoreResizable`'s must manually call the `resizableAttachedHandler` from the element's
+  `attached` callback and `resizableDetachedHandler` from the element's `detached`
+  callback.
+
+    @element CoreResizable
+    @status beta
+    @homepage github.io
+*/
+
+  scope.CoreResizable = {
+
+    /**
+     * User must call from `attached` callback
+     *
+     * @method resizableAttachedHandler
+     */
+    resizableAttachedHandler: function(cb) {
+      cb = cb || this._notifyResizeSelf;
+      this.async(function() {
+        var detail = {callback: cb, hasParentResizer: false};
+        this.fire('core-request-resize', detail);
+        if (!detail.hasParentResizer) {
+          this._boundWindowResizeHandler = cb.bind(this);
+          // log('adding window resize handler', null, this);
+          window.addEventListener('resize', this._boundWindowResizeHandler);
+        }
+      }.bind(this));
+    },
+
+    /**
+     * User must call from `detached` callback
+     *
+     * @method resizableDetachedHandler
+     */
+    resizableDetachedHandler: function() {
+      this.fire('core-request-resize-cancel', null, this, false);
+      if (this._boundWindowResizeHandler) {
+        window.removeEventListener('resize', this._boundWindowResizeHandler);
+      }
+    },
+
+    // Private: fire non-bubbling resize event to self; returns whether
+    // preventDefault was called, indicating that children should not
+    // be resized
+    _notifyResizeSelf: function() {
+      return this.fire('core-resize', null, this, false).defaultPrevented;
+    }
+
+  };
+
+/**
+  `Polymer.CoreResizable` and `Polymer.CoreResizer` are a set of mixins that can be used
+  in Polymer elements to coordinate the flow of resize events between "resizers" (elements
+  that control the size or hidden state of their children) and "resizables" (elements that
+  need to be notified when they are resized or un-hidden by their parents in order to take
+  action on their new measurements).
+
+  Elements that cause their children to be resized (e.g. a splitter control) or hide/show
+  their children (e.g. overlay) should add the `Core.CoreResizer` mixin to their 
+  Polymer prototype definition and then call `this.notifyResize()` any time the element
+  resizes or un-hides its children.
+
+  `CoreResizer`'s must manually call the `resizerAttachedHandler` from the element's
+  `attached` callback and `resizerDetachedHandler` from the element's `detached`
+  callback.
+
+  Note: `CoreResizer` extends `CoreResizable`, and can listen for the `core-resize` event
+  on itself if it needs to perform resize work on itself before notifying children.
+  In this case, returning `false` from the `core-resize` event handler (or calling
+  `preventDefault` on the event) will prevent notification of children if required.
+
+  @element CoreResizer
+  @extends CoreResizable
+  @status beta
+  @homepage github.io
+*/
+
+  scope.CoreResizer = Polymer.mixin({
+
+    /**
+     * User must call from `attached` callback
+     *
+     * @method resizerAttachedHandler
+     */
+    resizerAttachedHandler: function() {
+      this.resizableAttachedHandler(this.notifyResize);
+      this._boundResizeRequested = this._boundResizeRequested || this._handleResizeRequested.bind(this);
+      var listener;
+      if (this.resizerIsPeer) {
+        listener = this.parentElement || (this.parentNode && this.parentNode.host);
+        listener._resizerPeers = listener._resizerPeers || [];
+        listener._resizerPeers.push(this);
+      } else {
+        listener = this;
+      }
+      listener.addEventListener('core-request-resize', this._boundResizeRequested);
+      this._resizerListener = listener;
+    },
+
+    /**
+     * User must call from `detached` callback
+     *
+     * @method resizerDetachedHandler
+     */
+    resizerDetachedHandler: function() {
+      this.resizableDetachedHandler();
+      this._resizerListener.removeEventListener('core-request-resize', this._boundResizeRequested);
+    },
+
+    /**
+     * User should call when resizing or un-hiding children
+     *
+     * @method notifyResize
+     */
+    notifyResize: function() {
+      // Notify self
+      if (!this._notifyResizeSelf()) {
+        // Notify requestors if default was not prevented
+        var r = this.resizeRequestors;
+        if (r) {
+          for (var i=0; i<r.length; i++) {
+            var ri = r[i];
+            if (!this.resizerShouldNotify || this.resizerShouldNotify(ri.target)) {
+              // log('notifying resize', null, ri.target, true);
+              ri.callback.apply(ri.target);
+              // logEnd();
+            }
+          }
+        }
+      }
+    },
+
+    /**
+     * User should implement to introduce filtering when notifying children.
+     * Generally, children that are hidden by the CoreResizer (e.g. non-active
+     * pages) need not be notified during resize, since they will be notified
+     * again when becoming un-hidden.
+     *
+     * Return `true` if CoreResizable passed as argument should be notified of
+     * resize.
+     *
+     * @method resizeerShouldNotify
+     * @param {Element} el
+     */
+     // resizeerShouldNotify: function(el) { }  // User to implement if needed
+
+    /**
+     * Set to `true` if the resizer is actually a peer to the elements it
+     * resizes (e.g. splitter); in this case it will listen for resize requests
+     * events from its peers on its parent.
+     *
+     * @property resizerIsPeer
+     * @type Boolean
+     * @default false
+     */
+
+    // Private: Handle requests for resize
+    _handleResizeRequested: function(e) {
+      var target = e.path[0];
+      if ((target == this) || 
+          (target == this._resizerListener) || 
+          (this._resizerPeers && this._resizerPeers.indexOf(target) < 0)) {
+        return;
+      }
+      // log('resize requested', target, this);
+      if (!this.resizeRequestors) {
+        this.resizeRequestors = [];
+      }
+      this.resizeRequestors.push({target: target, callback: e.detail.callback});
+      target.addEventListener('core-request-resize-cancel', this._cancelResizeRequested.bind(this));
+      e.detail.hasParentResizer = true;
+      e.stopPropagation();
+    },
+
+    // Private: Handle cancellation requests for resize
+    _cancelResizeRequested: function(e) {
+      // Exit early if we're already out of the DOM (resizeRequestors will already be null)
+      if (this.resizeRequestors) {
+        for (var i=0; i<this.resizeRequestors.length; i++) {
+          if (this.resizeRequestors[i].target == e.target) {
+            // log('resizeCanceled', e.target, this);
+            this.resizeRequestors.splice(i, 1);
+            break;
+          }
+        }
+      }
+    }
+
+  }, Polymer.CoreResizable);
+
+  // function prettyName(el) {
+  //   return el.localName + (el.id ? '#' : '') + el.id;
+  // }
+
+  // function log(what, from, to, group) {
+  //   var args = [what];
+  //   if (from) {
+  //     args.push('from ' + prettyName(from));
+  //   }
+  //   if (to) {
+  //     args.push('to ' + prettyName(to));
+  //   }
+  //   if (group) {
+  //     console.group.apply(console, args);
+  //   } else {
+  //     console.log.apply(console, args);
+  //   }
+  // }
+
+  // function logEnd() {
+  //   console.groupEnd();
+  // }
+
+})(Polymer);
+
+</script>
+
+<!-- TODO: would be nice to inherit from label to get .htmlFor, and .control,
+           but the latter is readonly. -->
+<!-- TODO: support off center arrows. -->
+<!-- TODO: detect mobile and apply the .large class, instead of manual
+           control. -->
+<!-- TODO: possibly reuse core-overlay. -->
+
+		
+
+
+		
+
+
+		
 
 
 	</head>
@@ -2385,16 +2657,367 @@ polyfill-next-selector { content: ':host .indent'; }
 
   </script>
 </polymer-element>
+
+<polymer-element name="core-tooltip" attributes="noarrow position label show tipAttribute" role="tooltip" tabindex="0" assetpath="bower_components/core-tooltip/">
+<template>
+  <style>/* Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt */
+
+:host {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  outline: none;
+}
+
+:host(:hover:not([disabled])) .core-tooltip {
+  visibility: visible !important;
+}
+
+:host([focused]) .core-tooltip {
+  visibility: visible !important;
+}
+
+.core-tooltip:not(.show) {
+  visibility: hidden;
+}
+
+.core-tooltip {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 8px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-sizing: border-box;
+  border-radius: 3px; /* TODO: not in spec. */
+  white-space: nowrap;
+  line-height: 6px;
+  z-index: 1002; /* TODO: this is brittle. */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+:host([large]) .core-tooltip {
+  line-height: 14px;
+  font-size: 14px;
+  padding: 16px;
+}
+
+.core-tooltip.noarrow::after {
+  display: none;
+}
+
+.core-tooltip::after {
+  position: absolute;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  border-width: 4px;
+}
+
+.top {
+  margin-bottom: 10px; /* TODO: not specified in spec */
+  bottom: 100%;
+}
+
+.right {
+  margin-left: 10px; /* TODO: not specified in spec */
+  left: 100%;
+}
+
+.bottom {
+  top: 100%;
+  margin-top: 10px; /* TODO: not specified in spec */
+}
+
+.left {
+  margin-right: 10px; /* TODO: not specified in spec */
+  right: 100%;
+}
+
+.core-tooltip.bottom::after {
+  bottom: 100%;
+  left: calc(50% - 4px);
+  border-bottom-color: rgba(0,0,0,0.8);
+}
+
+.core-tooltip.left::after {
+  left: 100%;
+  top: calc(50% - 4px);
+  border-left-color: rgba(0,0,0,0.8);
+}
+
+.core-tooltip.top::after {
+  top: 100%;
+  left: calc(50% - 4px);
+  border-top-color: rgba(0,0,0,0.8);
+}
+
+.core-tooltip.right::after {
+  right: 100%;
+  top: calc(50% - 4px);
+  border-right-color: rgba(0,0,0,0.8);
+}
+</style>
+
+  <div id="tooltip" hidden?="{{!hasTooltipContent}}" class="core-tooltip {{position}} {{ {noarrow: noarrow, show: show &amp;&amp; !disabled} | tokenList}}">
+    <content id="c" select="[{{tipAttribute}}]">{{label}}</content>
+  </div>
+
+  <content></content>
+
+</template>
+<script>
+(function() {
+
+  var proto = {
+
+      /**
+       * A simple string label for the tooltip to display. To display a rich
+       * HTML tooltip instead, omit `label` and include the `tip` attribute
+       * on a child node of `core-tooltip`.
+       *
+       * @attribute label
+       * @type string
+       * @default null
+       */
+      label: null,
+
+      eventDelegates: {
+        'core-resize': 'positionChanged'
+      },
+
+      computed: {
+        // Indicates whether the tooltip has a set label propety or
+        // an element with the `tip` attribute.
+        hasTooltipContent: 'label || !!tipElement'
+      },
+
+      publish: {
+        /**
+         * Forces the tooltip to display. If `disabled` is set, this property is ignored.
+         *
+         * @attribute show
+         * @type boolean
+         * @default false
+         */
+        show: {value: false, reflect: true},
+
+        /**
+         * Positions the tooltip to the top, right, bottom, left of its content.
+         *
+         * @attribute position
+         * @type string
+         * @default 'bottom'
+         */
+        position: {value: 'bottom', reflect: true},
+
+        /**
+         * If true, the tooltip an arrow pointing towards the content.
+         *
+         * @attribute noarrow
+         * @type boolean
+         * @default false
+         */
+        noarrow: {value: false, reflect: true}
+      },
+
+      /**
+       * Customizes the attribute used to specify which content
+       * is the rich HTML tooltip.
+       *
+       * @attribute tipAttribute
+       * @type string
+       * @default 'tip'
+       */
+      tipAttribute: 'tip',
+
+      attached: function() {
+        this.updatedChildren();
+        this.resizableAttachedHandler();
+      },
+
+      detached: function() {
+        this.resizableDetachedHandler();
+      },
+
+      updatedChildren: function () {
+        this.tipElement = null;
+
+        for (var i = 0, el; el = this.$.c.getDistributedNodes()[i]; ++i) {
+          if (el.hasAttribute && el.hasAttribute(this.tipAttribute)) {
+            this.tipElement = el;
+            break;
+          }
+        }
+
+        // Job ensures we're not double calling setPosition() on DOM attach.
+        this.job('positionJob', this.setPosition);
+
+        // Monitor children to re-position tooltip when light dom changes.
+        this.onMutation(this, this.updatedChildren);
+      },
+
+      labelChanged: function(oldVal, newVal) {
+        this.job('positionJob', this.setPosition);
+      },
+
+      positionChanged: function(oldVal, newVal) {
+        this.job('positionJob', this.setPosition);
+      },
+
+      setPosition: function() {
+        var controlWidth = this.clientWidth;
+        var controlHeight = this.clientHeight;
+        var toolTipWidth = this.$.tooltip.clientWidth;
+        var toolTipHeight = this.$.tooltip.clientHeight;
+
+        switch (this.position) {
+          case 'top':
+          case 'bottom':
+            this.$.tooltip.style.left = (controlWidth - toolTipWidth) / 2 + 'px';
+            this.$.tooltip.style.top = null;
+            break;
+          case 'left':
+          case 'right':
+            this.$.tooltip.style.left = null;
+            this.$.tooltip.style.top = (controlHeight - toolTipHeight) / 2 + 'px';
+            break;
+        }
+      }
+
+    };
+
+    Polymer.mixin2(proto, Polymer.CoreFocusable);
+    Polymer.mixin(proto, Polymer.CoreResizable);
+    Polymer('core-tooltip',proto);
+  })();
+
+</script>
+</polymer-element>
+
+<polymer-element name="myfab-menu" assetpath="elements/">
+    <template>
+    <style>
+    paper-fab.projects {
+        background-color: #4ECF6E;
+    }
+    paper-fab.social {
+        background-color: #FFA44B;
+    }
+    paper-fab.contact {
+        background-color: #FF5653;
+    }
+    core-tooltip {
+        margin-bottom: 15px;
+    }
+    .fabmenuContainer {
+        position: absolute;
+        right: 40px;
+        top: 100px;
+    }
+    </style>
+        <div class="fabmenuContainer" vertical="" layout="">
+            <div horizontal="" layout="">
+                <core-tooltip label="Projects" position="left" noarrow="" show=""><paper-fab mini="" icon="settings" class="projects"></paper-fab></core-tooltip>
+            </div>
+            <div horizontal="" layout="">
+                <core-tooltip label="Social" position="left" noarrow="" show=""><paper-fab mini="" icon="account-circle" class="social"></paper-fab></core-tooltip>
+            </div>
+            <div horizontal="" layout="">
+                <core-tooltip label="Contact me" position="left" noarrow="" show=""><paper-fab mini="" icon="create" class="contact"></paper-fab></core-tooltip>
+            </div>
+        </div>
+    </template>
+<script>Polymer('myfab-menu');</script></polymer-element>
+
+<polymer-element name="sub-title" assetpath="elements/">
+    <template>
+    <style>
+        .subtitle {
+            font-size: 22px;
+            font-style: italic;
+        }
+    </style>
+            <div horizontal="" layout="">
+                <span class="subtitle middle">YouTuber, Programmer, Creative</span>
+            </div>
+    </template>
+<script>Polymer('sub-title');</script></polymer-element>
+
+<polymer-element name="social-card" attributes="wname uname clink" assetpath="elements/">
+    <template>
+    <style>
+        .card {
+            background-color: white;
+            width: 300px;
+            max-width: 300px;
+            border-radius: 3px;
+            font-style: none;
+            text-decoration: none;
+            color: black;
+            margin: 25px;
+        }
+        .socialIcon {
+            padding: 20px;
+            height: 100px;
+            width: 100px;
+        }
+        .main {
+            font-family: Roboto, sans-serif;
+            font-size: 25px;
+        }
+        .sub {
+            font-family: Roboto Condensed, sans-serif;
+            font-size: 14px;
+        }
+        a {
+            font-style: none;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+        <a href="{{clink}}" target="_blank">
+            <paper-shadow z="1" class="card" horizontal="" layout="">
+
+                    <img class="socialIcon" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
+
+                    <div vertical="" layout="">
+                        <span flex=""></span><!-- spacer -->
+                        <span class="main">{{wname}}</span>
+                        <span class="sub">{{uname}}</span>
+                        <span flex=""></span><!-- spacer -->
+                    </div>
+            </paper-shadow>
+        </a>
+    </template>
+<script>Polymer('social-card');</script></polymer-element>
 </div>
-		<core-header-panel flex="">
-			<core-toolbar vertical="" center-justified="" layout="">
-				<h1>Gabriele Musco</h1>
-				<paper-fab icon="toc" class="mainFab"></paper-fab>
+		<core-header-panel flex="" id="mainHeaderPanel">
+			<core-toolbar>
+				<div class="myName">Gabriele Musco</div>
+				<!--<sub-title class="bottom indent scrolled"></sub-title>-->
+				<span flex="" class="bottom"></span>
+				<paper-fab id="mainfabbutton" icon="toc" class="mainFab bottom"></paper-fab>
+				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
+
+			<div id="social" horizontal="" layout="" center-justified="">
+				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
+				<social-card wname="Twitter" uname="@gabmus207" clink=""></social-card>
+				<social-card wname="Google+" uname="/+GabrieleMusco" clink=""></social-card>
+				<social-card wname="YouTube" uname="Tech Pills" clink=""></social-card>
+				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
+			</div>
 			<!--content goes here-->
 
 		</core-header-panel>
-
 
 
 	

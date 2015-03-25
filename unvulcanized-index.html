@@ -13,9 +13,11 @@
 		  		$( "myfab-menu" ).toggleClass( "active" );
 			});
 		});
-
-		$(document).scroll(function(){
-			$("sub-title").toggleClass("scrolled", $("core-header-panel").scrollTop() > 1);
+		$("core-header-panel::shadow #mainContainer").scroll(function(){
+			alert("test");
+			if($("core-toolbar").hasClass("animate")) {
+				$("sub-title").css({"visibility": "hidden"});
+		}
 		});
 		</script>
 
@@ -29,24 +31,26 @@
 		<link rel="import" href="bower_components/core-tooltip/core-tooltip.html">
 		<link rel="import" href="elements/myfab-menu.html">
 		<link rel="import" href="elements/sub-title.html">
+		<link rel="import" href="elements/social-card.html">
 	</head>
 
 	<body fullbleed layout vertical>
-		<core-header-panel flex mode="waterfall-tall">
-			<core-toolbar class="" core-narrow>
+		<core-header-panel flex id="mainHeaderPanel">
+			<core-toolbar>
 				<div class="myName">Gabriele Musco</div>
-				<sub-title class="middle"></sub-title>
+				<!--<sub-title class="bottom indent scrolled"></sub-title>-->
 				<span flex class="bottom"></span>
 				<paper-fab id="mainfabbutton" icon="toc" class="mainFab bottom"></paper-fab>
 				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
 			</core-toolbar>
-			<br /><br /><br /><br /><br /><br />
-			<br /><br /><br /><br /><br /><br />
-			<br /><br /><br /><br /><br /><br />
-			<br /><br /><br /><br /><br /><br />
-			<br /><br /><br /><br /><br /><br />
-			<br /><br /><br /><br /><br /><br />
-			<br /><br /><br /><br /><br /><br />
+
+			<div id="social" horizontal layout center-justified>
+				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
+				<social-card wname="Twitter" uname="@gabmus207" clink=""></social-card>
+				<social-card wname="Google+" uname="/+GabrieleMusco" clink=""></social-card>
+				<social-card wname="YouTube" uname="Tech Pills" clink=""></social-card>
+				<social-card wname="GitHub" uname="GabMus" clink=""></social-card>
+			</div>
 			<!--content goes here-->
 
 		</core-header-panel>

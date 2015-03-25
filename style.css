@@ -6,7 +6,10 @@ core-toolbar {
     z-index: 50;
     background-color: #64ACDD;
     color: white;
-    height: 120px;
+}
+
+core-header-panel {
+    background-color: #eee;
 }
 
 .myName {
@@ -17,7 +20,6 @@ core-toolbar {
     z-index:100;
     background-color: #ff5c9d;
     top: 25px;
-    right: 25px;
 }
 
 myfab-menu.inactive {
@@ -32,6 +34,10 @@ myfab-menu.active {
     transition: opacity .3s linear;
 }
 
-.scrolled {
+sub-title.scrolled {
     visibility: hidden;
+}
+
+div#social {
+    flex-wrap: wrap;
 }
