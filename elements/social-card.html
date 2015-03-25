@@ -1,0 +1,49 @@
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+
+<polymer-element name="social-card" attributes="wname uname clink" noscript>
+    <template>
+    <style>
+        .card {
+            background-color: white;
+            width: 300px;
+            max-width: 300px;
+            border-radius: 3px;
+            font-style: none;
+            text-decoration: none;
+            color: black;
+            margin: 25px;
+        }
+        .socialIcon {
+            padding: 20px;
+            height: 100px;
+            width: 100px;
+        }
+        .main {
+            font-family: Roboto, sans-serif;
+            font-size: 25px;
+        }
+        .sub {
+            font-family: Roboto Condensed, sans-serif;
+            font-size: 14px;
+        }
+        a {
+            font-style: none;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+        <a href="{{clink}}" target="_blank">
+            <paper-shadow z="1" class="card" horizontal layout>
+
+                    <img class="socialIcon" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
+
+                    <div vertical layout>
+                        <span flex></span><!-- spacer -->
+                        <span class="main">{{wname}}</span>
+                        <span class="sub">{{uname}}</span>
+                        <span flex></span><!-- spacer -->
+                    </div>
+            </paper-shadow>
+        </a>
+    </template>
+</polymer-element>
