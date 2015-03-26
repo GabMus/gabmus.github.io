@@ -10,7 +10,6 @@
 			$( "#mainfabbutton" ).click(function() {
 		  		$( "myfab-menu" ).toggleClass( "active" );
 			});
-
 		});
 		</script>
 
@@ -3317,13 +3316,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #4ECF6E;
     }
     paper-fab.social {
-        background-color: #FFA44B;
+        background-color: #8975E1;
     }
     paper-fab.contact {
         background-color: #FF5653;
     }
     paper-fab.achievements {
-        background-color: #8975E1;
+        background-color: #FFA44B;
     }
     core-tooltip {
         margin-bottom: 15px;
@@ -3344,12 +3343,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a href="#socialLink" horizontal="" layout="">
                 <core-tooltip label="Social" position="left" noarrow="" show=""><paper-fab mini="" icon="question-answer" class="social"></paper-fab></core-tooltip>
             </a>
-            <a href="#contactmeLink" horizontal="" layout="">
-                <core-tooltip label="Contact me" position="left" noarrow="" show=""><paper-fab mini="" icon="create" class="contact"></paper-fab></core-tooltip>
-            </a>
-            <a href="#achievementsLink" horizontal="" layout="">
-                <core-tooltip label="Achievements" position="left" noarrow="" show=""><paper-fab mini="" icon="star" class="achievements"></paper-fab></core-tooltip>
-            </a>
+            <!--<a href="#contactmeLink" horizontal layout>
+                <core-tooltip label="Contact me" position="left" noarrow show><paper-fab mini icon="create" class="contact"></paper-fab></core-tooltip>
+            </a>-->
+            <!--<a href="#achievementsLink" horizontal layout>
+                <core-tooltip label="Achievements" position="left" noarrow show><paper-fab mini icon="star" class="achievements"></paper-fab></core-tooltip>
+            </a>-->
         </div>
     </template>
 <script>Polymer('myfab-menu');</script></polymer-element>
@@ -3403,7 +3402,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             background-color: #FF5C9D;
             color: white;
             position: absolute;
-            bottom: 15px;
+            bottom: 8px;
             right: 15px;
         }
     </style>
@@ -3491,6 +3490,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         paper-button {
             background-color: #FF5C9D;
             color: white;
+        }
+        .btnSpace {
             margin-right: 25px;
             margin-bottom:25px;
         }
@@ -3504,7 +3505,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div horizontal="" layout="">
                     <span flex=""></span>
-                    <a href="{{mlink}}" target="_blank"><paper-button raised="" hover="">MORE</paper-button></a>
+                    <div class="btnSpace">
+                    <a href="{{mlink}}" target="_blank"><paper-button raised="" hover="">MORE</paper-button></a></div>
                 </div>
             </paper-shadow>
     </template>
@@ -3584,8 +3586,14 @@ Creativity is, along with willpower, my best weapon to face every task and probl
 				<social-card wname="Twitter" uname="@gabmus207" clink="https://twitter.com/gabmus207"></social-card>
 				<social-card wname="Google+" uname="+GabrieleMusco" clink="https://plus.google.com/+GabrieleMusco"></social-card>
 				<social-card wname="YouTube" uname="Tech Pills" clink="https://www.youtube.com/gabrielemusco"></social-card>
+				<social-card wname="GMail" uname="emaildigabry@gmail.com" clink="mailto:emaildigabry@gmail.com"></social-card>
+				<social-card wname="LinkedIn" uname="Gabriele Musco" clink="https://www.linkedin.com/profile/view?id=307429342"></social-card>
 			</div>
 			<!--content goes here-->
+
+			<div class="footer">
+				2015 © Gabriele Musco
+			</div>
 
 		</core-header-panel>
 

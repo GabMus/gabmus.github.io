@@ -41,3 +41,11 @@ sub-title.scrolled {
 .card-container {
     flex-wrap: wrap;
 }
+
+.footer {
+    background-color: #E5E5E5;
+    margin-top: 50px;
+    padding: 25px;
+    box-shadow: inset 0px 5px 30px rgba(0,0,0,.3);
+    text-align: center;
+}
