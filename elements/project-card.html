@@ -39,6 +39,8 @@
         paper-button {
             background-color: #FF5C9D;
             color: white;
+        }
+        .btnSpace {
             margin-right: 25px;
             margin-bottom:25px;
         }
@@ -52,7 +54,8 @@
                 </div>
                 <div horizontal layout>
                     <span flex></span>
-                    <a href="{{mlink}}" target="_blank"><paper-button raised hover>MORE</paper-button></a>
+                    <div class="btnSpace">
+                    <a href="{{mlink}}" target="_blank"><paper-button raised hover>MORE</paper-button></a></div>
                 </div>
             </paper-shadow>
     </template>
