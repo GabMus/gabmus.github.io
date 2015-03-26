@@ -3508,13 +3508,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
             </paper-shadow>
     </template>
-    <script>
-    Polymer('project-card',{
-            method1: function () {
-              this.$.overlay.toggle();
-            }
-         });
-    </script>
 <script>Polymer('project-card');</script></polymer-element>
 
 <polymer-element name="about-me" assetpath="elements/">
@@ -3522,7 +3515,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
         .card {
             background-color: white;
-            width: 100%;
+            width: 70%;
             max-width: 800px;
             border-radius: 3px;
             font-style: none;
@@ -3531,38 +3524,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             margin: 25px;
         }
         .main {
+            text-align: left;
             font-family: Roboto, sans-serif;
             font-size: 25px;
         }
         .sub {
+            text-align: left;
             font-family: Roboto, sans-serif;
             font-size: 16px;
         }
         .myFace {
-
+            padding: 0;
+            margin: 0;
+            max-height: 100%;
+            width: auto;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
         }
+        /*.verLayout {
+            margin-left: 250px;
+            margin-right: 25px;
+        }*/
     </style>
 
-
-<!--
-    <a href="{{mlink}}" target="_blank"><paper-button raised hover>
-
-    </paper-button></a>
--->
-
-
-
-                <paper-shadow z="1" class="card" horizontal="" layout="">
-                    <img class="myFace" src="elements/social-icons/{{wname}}.svg"> <!-- elements/ necessary: (only) with attribute in src it's like the path starts from / -->
-                    <div vertical="" layout="">
-                        <span flex=""></span><!-- spacer -->
-                        <p class="main"></p>
-                        <p class="sub">Hello there! My name is Gabriele and I am a Computer Science student in Catania's university.
+                <paper-shadow z="1" class="card" horizontal="" layout="" center="" flex="">
+                    <img class="myFace" src="elements/pics/about-pic.jpg">
+                        <span class="sub">Hello there! My name is Gabriele and I am a Computer Science student in Catania's university.
 I've always been fascinated by the amazing world of technology and computers and at some point in my life I decided I could make a living out of my passion.
 I'm a YouTuber, designer, developer, programmer and many other things at the same time, but I don't like to be limited to one field only. That's why I like to refer to myself a <i>creative</i>.
-Creativity is, along with willpower, my best weapon to face every task and problem.</p>
-                        <span flex=""></span><!-- spacer -->
-                    </div>
+Creativity is, along with willpower, my best weapon to face every task and problem.</span>
                     <paper-shadow>
 
     
