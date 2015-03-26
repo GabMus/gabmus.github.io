@@ -5,18 +5,13 @@
     <style>
         .card {
             background-color: white;
-            width: 70%;
-            max-width: 800px;
+            max-width: 650px;
+            min-width: 300px;
             border-radius: 3px;
             font-style: none;
             text-decoration: none;
             color: rgb(51, 51, 51);
             margin: 25px;
-        }
-        .main {
-            text-align: left;
-            font-family: Roboto, sans-serif;
-            font-size: 25px;
         }
         .sub {
             text-align: left;
@@ -24,30 +19,19 @@
             font-size: 16px;
         }
         .myFace {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            width: auto;
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-        }
-        /*.verLayout {
-            margin-left: 250px;
-            margin-right: 25px;
-        }*/
-        .mypic {
-            float: left;
-            display: inline-block;
-            height: 400px;
+            padding: 25px;
+            height: 140px;
+            width: 140px;
         }
         .mytext {
-            float: right;
+            margin: 25px;
+            margin-top:-10px;
         }
     </style>
 
-                <paper-shadow z="1" class="card" horizontal layout center>
-                    <div class="mypic">
-                        <img class="myFace" src="pics/about-pic.jpg">
+                <paper-shadow z="1" class="card" id="profilecard" vertical layout center>
+                    <div>
+                        <img class="myFace" src="pics/about-pic.png">
                     </div>
                     <div class="mytext">
                         <span class="sub">Hello there! My name is Gabriele and I am a Computer Science student in Catania's university.
