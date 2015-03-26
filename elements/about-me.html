@@ -26,7 +26,7 @@
         .myFace {
             padding: 0;
             margin: 0;
-            max-height: 100%;
+            height: 100%;
             width: auto;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
@@ -35,14 +35,26 @@
             margin-left: 250px;
             margin-right: 25px;
         }*/
+        .mypic {
+            float: left;
+            display: inline-block;
+            height: 400px;
+        }
+        .mytext {
+            float: right;
+        }
     </style>
 
-                <paper-shadow z="1" class="card" horizontal layout center flex>
-                    <img class="myFace" src="pics/about-pic.jpg">
+                <paper-shadow z="1" class="card" horizontal layout center>
+                    <div class="mypic">
+                        <img class="myFace" src="pics/about-pic.jpg">
+                    </div>
+                    <div class="mytext">
                         <span class="sub">Hello there! My name is Gabriele and I am a Computer Science student in Catania's university.
 I've always been fascinated by the amazing world of technology and computers and at some point in my life I decided I could make a living out of my passion.
 I'm a YouTuber, designer, developer, programmer and many other things at the same time, but I don't like to be limited to one field only. That's why I like to refer to myself a <i>creative</i>.
 Creativity is, along with willpower, my best weapon to face every task and problem.</span>
+                    </div>
                     <paper-shadow>
 
     </div>
