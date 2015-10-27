@@ -1,85 +1,90 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="theme-color" content="#64ACDD">
+    <head>
+        <meta charset="utf-8">
+		<meta name="theme-color" content="#2196F3
+">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-		<link href="style.css" rel="stylesheet" type="text/css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-		<script>
-		$(document).ready(function() {
-			$( "#mainfabbutton" ).click(function() {
-		  		$( "myfab-menu" ).toggleClass( "active" );
-			});
-		});
-		</script>
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
-		<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
-		<link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
-		<link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
-		<link rel="import" href="bower_components/core-icons/core-icons.html">
-		<link rel="import" href="bower_components/paper-fab/paper-fab.html">
-		<link rel="import" href="bower_components/core-tooltip/core-tooltip.html">
-		<link rel="import" href="bower_components/paper-button/paper-button.html">
-		<link rel="import" href="elements/myfab-menu.html">
-		<link rel="import" href="elements/sub-title.html">
-		<link rel="import" href="elements/social-card.html">
-		<link rel="import" href="elements/section-title.html">
-		<link rel="import" href="elements/project-card.html">
-		<link rel="import" href="elements/about-me.html">
-	</head>
-
-	<body fullbleed layout vertical>
-		<core-header-panel flex id="mainHeaderPanel">
-			<core-toolbar>
-				<div class="myName">Gabriele Musco</div>
-				<!--<sub-title class="bottom indent scrolled"></sub-title>-->
-				<span flex class="bottom"></span>
-				<paper-fab id="mainfabbutton" icon="toc" class="mainFab bottom"></paper-fab>
-				<myfab-menu id="mainfabmenu" class="inactive bottom"></myfab-menu>
-			</core-toolbar>
-
-			<section-title id ="meLink" text="SOMETHING ABOUT ME"></section-title>
-			<div class="card-container" horizontal layout center-justified>
-				<about-me></about-me>
-			</div>
+		<link rel="import"
+		href="elements/photo-card.html">
+		<link rel="import"
+    	href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+        <link rel="import"
+    	href="elements/pressable-photocard.html">
 
 
-			<section-title id ="projLink" text="PROJECTS"></section-title>
-			<div class="card-container" horizontal layout center-justified>
-				<project-card
-					pname="Tech Pills"
-					pdesc="Technology YouTube channel"
-					ipath="techpills"
-					mlink="https://www.youtube.com/gabrielemusco">
-				</project-card>
-				<project-card
-					pname="CO2 Photo Editor"
-					pdesc="FOSS, Material Design photo filters app for Android using OpenGL ES"
-					ipath="co2"
-					mlink="https://github.com/GabMus/CO2-Photo-Editor">
-				</project-card>
-			</div>
+        <style>
+            body {
+            	background-color: #8BC34A;
+                padding: 0 auto;
+                margin: 0 auto;
+                font-family: Roboto, Arial, sans-serif;
+            }
 
-			<section-title id ="socialLink" text="SOCIAL"></section-title>
-			<div class="card-container" horizontal layout center-justified>
-				<social-card wname="GitHub" uname="GabMus" clink="https://github.com/GabMus/"></social-card>
-				<social-card wname="Twitter" uname="@gabmus207" clink="https://twitter.com/gabmus207"></social-card>
-				<social-card wname="Google+" uname="+GabrieleMusco" clink="https://plus.google.com/+GabrieleMusco"></social-card>
-				<social-card wname="YouTube" uname="Tech Pills" clink="https://www.youtube.com/gabrielemusco"></social-card>
-				<social-card wname="GMail" uname="emaildigabry@gmail.com" clink="mailto:emaildigabry@gmail.com"></social-card>
-				<social-card wname="LinkedIn" uname="Gabriele Musco" clink="https://www.linkedin.com/profile/view?id=307429342"></social-card>
-			</div>
-			<!--content goes here-->
+            .sectionTitle {
+                color: #263238;
+            }
+        </style>
+    </head>
+    <body class="vertical layout center">
+		<photo-card mtitle="Gabriele Musco" desc="Hello there! My name is Gabriele, I am a Computer Science student in Catania's university. I've always been fascinated by the amazing world of technology and computers and at some point in my life I tought I could make a living out of my passion. I'm a YouTuber, developer and designer, but I don't like to be limited to one field only. That's why I like to refer to myself a creative. Creativity is, along with willpower, my best weapon to face everyday tasks and problems." picurl="img/profilepic.jpg" csize="big" id="maincard" onclick="egg()"></photo-card>
 
-			<div class="footer">
-				2015 © Gabriele Musco
-			</div>
+        <h2 class="sectionTitle">Projects</h2>
 
-		</core-header-panel>
+		<div class="horizontal layout wrap center-justified">
 
+            <pressable-photocard mtitle="mLauncher"
+            picurl="img/projects/mlauncher.png"
+            desc="Desktop launcher creator for GNOME, GPL v3 license"
+            mlink="https://github.com/GabMus/mLauncher"></pressable-photocard>
 
-	</body>
+            <pressable-photocard mtitle="CO2 Photo Editor" picurl="img/projects/co2.png"
+            desc="Open source artistic photo editor for Android, Apache license"
+            mlink="https://github.com/GabMus/co2-photo-editor"></pressable-photocard>
+
+            <pressable-photocard mtitle="Tech Pills" picurl="img/projects/techpills.png"
+            desc="Quality technology videos on YouTube"
+            mlink="https://youtube.com/c/TechPillsNet"></pressable-photocard>
+
+		</div>
+
+        <h2 class="sectionTitle">Social</h2>
+
+        <div class="horizontal layout wrap center-justified" style="font-size: 20px;">
+
+            <pressable-photocard mtitle="GitHub"
+            picurl="img/social/github.png"
+            desc="GabMus"
+            mlink="https://github.com/GabMus"></pressable-photocard>
+
+            <pressable-photocard mtitle="Twitter" picurl="img/social/twitter.png"
+            desc="@gabmus207"
+            mlink="https://twitter.com/gabmus207"></pressable-photocard>
+
+            <pressable-photocard mtitle="Google+" picurl="img/social/gplus.png"
+            desc="+Gabriele Musco"
+            mlink="https://plus.google.com/+GabrieleMusco"></pressable-photocard>
+
+            <pressable-photocard mtitle="E-Mail" picurl="img/social/mail.png"
+            desc="emaildigabry@gmail.com"
+            mlink="mailto:emaildigabry@gmail.com"></pressable-photocard>
+
+        </div>
+
+        <script>
+            var c=0;
+            function egg() {
+                c=c+1;
+                if (c>=20) {
+                    document.getElementById('maincard').picurl="/img/dino.png"
+                }
+            }
+        </script>
+
+        </script>
+    </body>
 </html>

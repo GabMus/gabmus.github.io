@@ -1,0 +1,27 @@
+{
+  "name": "gabmus.github.io",
+  "version": "2.0.0",
+  "authors": [
+    "gabmus <emaildigabry@gmail.com>"
+  ],
+  "description": "Gabriele Musco personal website",
+  "moduleType": [
+    "node"
+  ],
+  "license": "GPLv3",
+  "homepage": "https://gabmus.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.0.4",
+    "paper-card": "PolymerElements/paper-card#~1.0.7",
+    "paper-button": "PolymerElements/paper-button#~1.0.8",
+    "paper-fab": "PolymerElements/paper-fab#~1.0.6"
+  }
+}

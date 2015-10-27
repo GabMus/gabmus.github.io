@@ -1,0 +1,71 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<link rel="import"
+    href="../bower_components/paper-button/paper-button.html">
+
+<link rel="import"
+    href="photo-card.html">
+
+<dom-module id="pressable-photocard">
+
+  <template>
+
+    <style is="custom-style">
+        :host {
+            margin: 24px;
+        }
+        .mpressable {
+            margin: 0;
+        }
+
+        .mbutton {
+            padding: 0;
+            text-transform: none;
+        }
+    </style>
+                <a href="{{mlink}}">
+                    <paper-button class="mbutton">
+                        <photo-card mtitle="{{mtitle}}" picurl="{{picurl}}" desc="{{desc}}" class="mpressable"></photo-card>
+                    </paper-button>
+                </a>
+
+  </template>
+
+  <script>
+	Polymer({
+		is: "pressable-photocard",
+		properties: {
+			mtitle: {
+				type: String,
+				value: "Card"
+			},
+			desc: {
+				type: String,
+				value: "Hello world!"
+			},
+      		picurl: {
+      			type: String,
+                key: "picurl",
+      			value: ""
+      		},
+      		csize: {
+      			type: String,
+      			value: "300"
+      		},
+            mlink: {
+                type: String,
+                value: "#"
+            }
+		},
+
+        ready: function() {
+            console.log("test");
+            mnlink = this.mlink;
+        }
+
+
+	});
+  </script>
+
+</dom-module>
